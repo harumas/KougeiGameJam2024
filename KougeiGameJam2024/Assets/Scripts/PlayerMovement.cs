@@ -35,17 +35,21 @@ public class PlayerMovement : MonoBehaviour
         InitialShieldDuration = ShieldDuration;
     }
 
-    private bool BeginGame = true;
+    private bool BeginGame = false;
+
+    public void Begin()
+    {
+        BeginGame = true;
+    }
+    
+    public void End()
+    {
+        BeginGame = false;
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        if(ropeScript != null){
-            ropeScript.Length = Vector3.Distance(EnemyObj.transform.position,transform.position) / ropeScript.GetMaxLength();
-        }else{
-            Debug.LogError(gameObject.name + "にロープスクリプトをアタッチしてください！");
-        }
-        
-
         if(BeginGame){
             Pull();
 
