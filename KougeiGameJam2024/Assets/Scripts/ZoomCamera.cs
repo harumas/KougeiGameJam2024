@@ -14,6 +14,7 @@ public class ZoomCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        // カメラを近づける
         Vector3 position = targetRope.transform.position;
         transform.position = new Vector3(position.x, position.y, min + max * targetRope.Length);
     }
