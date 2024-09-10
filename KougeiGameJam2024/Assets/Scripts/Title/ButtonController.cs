@@ -16,13 +16,24 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private float ClickSize;
     private ButtonManager buttonManager => ButtonManager.Instance;
 
-    private enum TYPE
+    private enum PUSHTYPE
     { 
         GameStart,
-        Finish
+        Credit,
+        ResetCredit,
+        Finish,
+        URL,
     }
 
-    [SerializeField] private TYPE type; 
+    [SerializeField] private PUSHTYPE PushType; 
+
+    private enum DISPLAYTYPE
+    {
+        Title,
+        Credit
+    }
+
+    [SerializeField] private DISPLAYTYPE DisplayType;
 
     private void Start()
     {
@@ -30,15 +41,27 @@ public class ButtonController : MonoBehaviour
     }
     public void EnterButton()
     {
-        if (buttonManager.Load)
+        if (buttonManager.IsLoad||(int)DisplayType!=buttonManager.DisplayButton)
             return;
         ButtonImage.DOColor(EnterColor, SetTime);
         transform.DOScale(NormalSize*EnterSize, SetTime);
     }
 
+    public void SetValue()
+    {
+        if (buttonManager.IsLoad || (int)DisplayType != buttonManager.DisplayButton)
+            return;
+
+       switch (DisplayType)
+        { 
+            case DISPLAYTYPE.Title:buttonManager.SetTitleValue(this); break;
+            case DISPLAYTYPE.Credit:buttonManager.SetCreditValue(this);break;
+        }
+    }
+
     public void ExitButton()
     {
-        if (buttonManager.Load)
+        if (buttonManager.IsLoad || (int)DisplayType != buttonManager.DisplayButton)
             return;
         ButtonImage.DOColor(NormalColor, SetTime);
         transform.DOScale(NormalSize, SetTime);
@@ -46,25 +69,33 @@ public class ButtonController : MonoBehaviour
 
     public void ClickButton()
     {
-        if (buttonManager.Load)
+        if (buttonManager.IsLoad || (int)DisplayType != buttonManager.DisplayButton)
             return;
-        buttonManager.Load = true;
-        ButtonImage.DOColor(ClickColor, SetTime/2);
-        transform.DOScale(NormalSize*ClickSize, SetTime/2).OnComplete(() =>
+        buttonManager.IsLoad = true;
+        ButtonImage.DOColor(ClickColor, SetTime);
+        transform.DOScale(NormalSize*ClickSize, SetTime).OnComplete(() =>
         {
-            ButtonImage.DOColor(EnterColor, SetTime/2);
-            transform.DOScale(NormalSize*EnterSize, SetTime/2);
+            ButtonImage.DOColor(NormalColor, SetTime);
+            transform.DOScale(NormalSize, SetTime);
 
-            switch (type) 
+            switch (PushType) 
             { 
-                case TYPE.GameStart:buttonManager.LoadScene(""); break;
-                case TYPE.Finish:
+                case PUSHTYPE.GameStart: buttonManager.LoadScene(""); break;
+                case PUSHTYPE.Credit: buttonManager.SetCredit(); break;
+                case PUSHTYPE.ResetCredit: buttonManager.ResetCredit();  break;
+                case PUSHTYPE.Finish:
                     {
                         #if UNITY_EDITOR
                         UnityEditor.EditorApplication.isPlaying = false;
                         #else
                         Application.Quit();
                         #endif
+                        break;
+                    }
+                case PUSHTYPE.URL:
+                    {
+                        Application.OpenURL("https://getabakoclub.com/");
+                        buttonManager.IsLoad = false;
                         break;
                     }
 
