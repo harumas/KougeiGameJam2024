@@ -5,18 +5,24 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("操作関係")]
+    [SerializeField]private GameObject EnemyObj;
+    [Header("操作関係")]
     [SerializeField]private float MoveSpeed;
     [Header("動きの制限関係")]
     [Tooltip("制限を始める距離")]
-    [SerializeField]private float LimitStartDistance;
-    [SerializeField]private float LimitEndByStartDistance;
+    [Range(0f, 1f)]
+    [SerializeField]private float LimitStartLength;
     [SerializeField]private AnimationCurve LimitCurve;
     [SerializeField]private bool IsRightMove;
-    private float MovedDistance;
+    [SerializeField]private float CurrentRopeLength;
+    private float MaxRopeLength;
     // Update is called once per frame
     void Update()
     {
-        if(IsRightMove && Input.GetKey(KeyCode.RightArrow) && LimitStartDistance >= transform.position.x)
+
+        CurrentRopeLength = Vector3.Distance(transform.position,EnemyObj.transform.position);
+
+        if(IsRightMove && Input.GetKey(KeyCode.RightArrow) && LimitStartLength >= CurrentRopeLength)
         {
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += MoveSpeed * Time.deltaTime;
@@ -26,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             PositionLimit();
         }
 
-        if(!IsRightMove && Input.GetKey(KeyCode.A) && LimitStartDistance >= -transform.position.x)
+        if(!IsRightMove && Input.GetKey(KeyCode.A) && LimitStartLength >= CurrentRopeLength)
         {
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += -MoveSpeed * Time.deltaTime;
@@ -44,15 +50,14 @@ public class PlayerMovement : MonoBehaviour
         if(IsRightMove && Input.GetKey(KeyCode.RightArrow))
         {
             Vector3 CurrentPosition = transform.position;
-            CurrentPosition.x += MoveSpeed * LimitCurve.Evaluate((transform.position.x - LimitStartDistance)/LimitEndByStartDistance) * Time.deltaTime;
+            CurrentPosition.x += MoveSpeed * LimitCurve.Evaluate(CurrentRopeLength/MaxRopeLength) * Time.deltaTime;
             transform.position = CurrentPosition;
         }
 
         if(!IsRightMove && Input.GetKey(KeyCode.A))
         {
             Vector3 CurrentPosition = transform.position;
-            CurrentPosition.x += -MoveSpeed * LimitCurve.Evaluate((-transform.position.x - LimitStartDistance)/LimitEndByStartDistance) * Time.deltaTime;
-            Debug.Log("MoveValue" + (-transform.position.x - LimitStartDistance)/LimitEndByStartDistance);
+            CurrentPosition.x += -MoveSpeed * LimitCurve.Evaluate(CurrentRopeLength/MaxRopeLength) * Time.deltaTime;
             transform.position = CurrentPosition;
         }
     }
