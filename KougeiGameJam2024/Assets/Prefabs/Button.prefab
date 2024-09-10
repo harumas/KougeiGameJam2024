@@ -107,13 +107,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
         - m_Target: {fileID: 657236642981925004}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: ExitButton
+          m_MethodName: SetValue
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -158,7 +154,8 @@ MonoBehaviour:
   SetTime: 0.3
   EnterSize: 1.2
   ClickSize: 0.8
-  type: 0
+  PushType: 0
+  DisplayType: 0
 --- !u!1 &8271395930417386791
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class StartCountDown : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countDownMesh;
     [SerializeField] private PlayerMovement lPlayerMovement;
     [SerializeField] private PlayerMovement rPlayerMovement;
+    [SerializeField] private bool skipCountDown;
     private bool isStarting = false;
 
     private void Update()
@@ -17,8 +18,16 @@ public class StartCountDown : MonoBehaviour
             return;
         }
 
+
         if (IsBothPushing())
         {
+            if (skipCountDown)
+            {
+                lPlayerMovement.Begin();
+                rPlayerMovement.Begin();
+                return;
+            }
+
             isStarting = true;
             StartCoroutine(nameof(StartSequence));
         }
@@ -60,7 +69,7 @@ public class StartCountDown : MonoBehaviour
         countDownMesh.text = "Go!";
         yield return new WaitForSeconds(0.5f);
         countDownMesh.enabled = false;
-        
+
         lPlayerMovement.Begin();
         rPlayerMovement.Begin();
     }
