@@ -18,7 +18,6 @@ public class StartCountDown : MonoBehaviour
             return;
         }
 
-
         if (IsBothPushing())
         {
             if (skipCountDown)

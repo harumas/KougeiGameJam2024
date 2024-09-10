@@ -52,7 +52,6 @@ public class Rope : MonoBehaviour
         set
         {
             normalizedLength = Mathf.Clamp01(value);
-            Debug.Log(normalizedLength);
             realLength = Mathf.Lerp(min, max, normalizedLength);
         }
     }

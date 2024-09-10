@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     public event Action<bool> OnReleased;
+    private bool IsReleased;
 
     void Start()
     {
@@ -111,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
                 IsHoldingRubber = true;
             }else if(!IsShieldBroken){
                 OnReleased?.Invoke(true);
+                End();
                 IsHoldingRubber = false;
             }
         }else{
@@ -119,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
                 IsHoldingRubber = true;
             }else if(!IsShieldBroken){
                 OnReleased?.Invoke(false);
+                End();
                 IsHoldingRubber = false;
             }
         }
