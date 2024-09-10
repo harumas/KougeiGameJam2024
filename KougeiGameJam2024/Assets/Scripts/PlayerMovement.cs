@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private Rope ropeScript;
     [SerializeField]private bool IsRightMove;
     [SerializeField]private bool IsHoldingRubber;
+
+    public event Action<bool> OnReleased;
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Shield()
     {
-        
+
     }
 
     void RubberHold()
@@ -35,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             IsHoldingRubber = true;
         }else{
+            OnReleased?.Invoke(true);
             IsHoldingRubber = false;
         }
 
@@ -42,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             IsHoldingRubber = true;
         }else{
+            OnReleased?.Invoke(false);
             IsHoldingRubber = false;
         }
     }
