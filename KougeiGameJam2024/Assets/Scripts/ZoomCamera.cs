@@ -3,19 +3,22 @@ using UnityEngine;
 
 public class ZoomCamera : MonoBehaviour
 {
-    [SerializeField] private float min;
-    [SerializeField] private float max;
-    [SerializeField] private Rope targetRope;
+    [SerializeField] private Transform pointA;
+    [SerializeField] private Transform pointB;
+    [SerializeField] private float paddingOffset;
+
+    private Camera mainCamera;
 
     private void Start()
     {
-        min = transform.localPosition.z;
+        mainCamera = Camera.main;
     }
 
     private void LateUpdate()
     {
         // カメラを近づける
-        Vector3 position = targetRope.transform.position;
-        transform.position = new Vector3(position.x, position.y, min + max * targetRope.Length);
+        Vector3 diff = pointB.position - pointA.position;
+        transform.position = pointA.position + diff * 0.5f + new Vector3(0f, 0f, -10f);
+        mainCamera.orthographicSize = diff.magnitude * 0.5f - diff.magnitude * diff.magnitude * paddingOffset;
     }
 }
