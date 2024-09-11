@@ -1014,10 +1014,9 @@ MonoBehaviour:
   increaseHpValue: 2
   increaseInterval: 0.5
   damageMultiplier: 80
-  lPlayerSlider: {fileID: 1267743734}
-  rPlayerSlider: {fileID: 1691164750}
-  lPlayerMovement: {fileID: 1982778793}
-  rPlayerMovement: {fileID: 610856658}
+  scoreManager: {fileID: 0}
+  lPlayerSlider: {fileID: 0}
+  rPlayerSlider: {fileID: 0}
   rope: {fileID: 199872511}
 --- !u!4 &615210001
 Transform:
@@ -1821,18 +1820,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 463224183}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1267743734 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2860880869522584630, guid: 0a12e43cc1017a54dad5b9720c23129c,
-    type: 3}
-  m_PrefabInstance: {fileID: 463224183}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1281768999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2027,7 @@ GameObject:
   - component: {fileID: 1417294824}
   - component: {fileID: 1417294823}
   - component: {fileID: 1417294822}
+  - component: {fileID: 1417294825}
   m_Layer: 0
   m_Name: SpriteSwitcher (1)
   m_TagString: Untagged
@@ -2132,6 +2120,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1417294825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417294821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f41375688087e49a1e02d871cfe51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Images:
+  - {fileID: 21300000, guid: c256820b3fd89a84ebec9e512bfb7c54, type: 3}
+  - {fileID: 0}
+  TargetSpriteRenderer: {fileID: 0}
+  SwitchSpeed: 0
+  EnableAnimation: 0
 --- !u!1 &1511852835
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2149,7 @@ GameObject:
   - component: {fileID: 1511852838}
   - component: {fileID: 1511852837}
   - component: {fileID: 1511852836}
+  - component: {fileID: 1511852839}
   m_Layer: 0
   m_Name: SpriteSwitcher
   m_TagString: Untagged
@@ -2235,6 +2242,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1511852839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511852835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f41375688087e49a1e02d871cfe51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Images:
+  - {fileID: 21300000, guid: 1e5852aa0a0a5b146bb3300ec83105b2, type: 3}
+  - {fileID: 21300000, guid: 7056b577dca00284585435ace3a6db56, type: 3}
+  TargetSpriteRenderer: {fileID: 1511852837}
+  SwitchSpeed: 1
+  EnableAnimation: 1
 --- !u!1 &1600125301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,8 +2440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rope: {fileID: 199872511}
-  lPlayerMovement: {fileID: 1982778793}
-  rPlayerMovement: {fileID: 610856658}
+  shieldJudge: {fileID: 0}
   minScore: 0
   maxScore: 300
 --- !u!4 &1683830714
@@ -2434,18 +2458,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1691164750 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2860880869522584630, guid: 0a12e43cc1017a54dad5b9720c23129c,
-    type: 3}
-  m_PrefabInstance: {fileID: 15363068}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1691164751 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4882053629254187442, guid: 0a12e43cc1017a54dad5b9720c23129c,
@@ -2702,6 +2714,7 @@ MonoBehaviour:
   offsetZ: -3
   paddingOffset: 0.001
   cameraDamping: 2
+  cameraBrain: {fileID: 0}
   mainCamera: {fileID: 1600125302}
   lPlayerCamera: {fileID: 1613073397}
   rPlayerCamera: {fileID: 1995514560}
