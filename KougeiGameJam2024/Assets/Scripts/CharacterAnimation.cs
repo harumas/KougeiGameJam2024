@@ -70,6 +70,7 @@ public class CharacterAnimation : MonoBehaviour
     void OnDamaged(bool isRight)
     {
         isAnimationEnabled = false;
+        SoundManager.Instance.PlaySE(SoundManager.SEType.HitByRubber);
 
         if(isRight)
         {

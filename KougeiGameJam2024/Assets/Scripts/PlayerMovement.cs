@@ -24,16 +24,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float ShieldDurationHeal;
 
-    [SerializeField] private float ShieldDuration;
-    [SerializeField] private float ShieldCoolDown;
     [SerializeField] private Shield shield;
+    [Range(0,2f)]
+    [SerializeField]private float ShieldDurationHeal; 
+    [SerializeField]private float ShieldDuration;
+    [SerializeField]private float ShieldCoolDown;
+    [Header("SE")]
+    [SerializeField]private int randomMin;
+    [SerializeField]private int randomMax;
     private bool IsShieldBroken;
     private float InitialShieldDuration;
     public bool IsUsingShield, isWalking_R, isWalking_L;
 
 
     public event Action<bool> OnReleased;
-    private bool IsReleased;
+
 
     void Start()
     {
@@ -121,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator ShieldBreak()
     {
         IsShieldBroken = true;
+        SoundManager.Instance.PlaySE(SoundManager.SEType.BarrierFailed);
         yield return new WaitForSeconds(ShieldCoolDown);
 
         IsShieldBroken = false;
@@ -156,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    Coroutine lSEcoroutine = null,rSEcoroutine = null;
     void Pull()
     {
         if (IsRightMove && Input.GetKey(KeyCode.RightArrow) && !IsShieldBroken)
@@ -163,23 +170,59 @@ public class PlayerMovement : MonoBehaviour
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += MoveSpeed * ropeScript.GetRopeDecayRate() * Time.deltaTime;
             transform.position = CurrentPosition;
-            isWalking_R = true;
-        }
-        else
-        {
-            isWalking_R = false;
+
+            if(rSEcoroutine == null)
+            {
+                
+                rSEcoroutine = StartCoroutine(PlayeRubberPull());
+            }
+            isWalking_R=true;
+        }else{
+
+            if(rSEcoroutine != null)
+            {
+
+                StopCoroutine(rSEcoroutine);
+                StopCoroutine(PlayeRubberPull());
+                rSEcoroutine = null;
+            }
+            isWalking_R=false;
         }
 
         if (!IsRightMove && Input.GetKey(KeyCode.A) && !IsShieldBroken)
         {
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += -MoveSpeed * ropeScript.GetRopeDecayRate() * Time.deltaTime;
+            isWalking_R=true;
             transform.position = CurrentPosition;
-            isWalking_L = true;
+            isWalking_L=true;
+
+            if(lSEcoroutine == null)
+            {
+                
+                lSEcoroutine = StartCoroutine(PlayeRubberPull());
+            }
+        }else{
+             if(lSEcoroutine != null)
+            {
+
+                StopCoroutine(lSEcoroutine);
+                StopCoroutine(PlayeRubberPull());
+                lSEcoroutine = null;
+            }
+            isWalking_R=false;
+            isWalking_L=false;
         }
-        else
+    }
+
+    IEnumerator PlayeRubberPull()
+    {
+        while(true)
         {
-            isWalking_L = false;
+            SoundManager.Instance.PlaySE(SoundManager.SEType.StretchRubber);
+            int RandomSecond = UnityEngine.Random.Range(randomMin, randomMax);
+            yield return new WaitForSeconds(RandomSecond);
+            yield return null;
         }
     }
 }
