@@ -46,6 +46,7 @@ public class ButtonController : MonoBehaviour
             return;
         ButtonImage.DOColor(EnterColor, SetTime);
         transform.DOScale(NormalSize*EnterSize, SetTime);
+        SoundManager.Instance.PlaySE(SoundManager.SEType.ButtonMove);
     }
 
     public void SetValue()
@@ -72,6 +73,7 @@ public class ButtonController : MonoBehaviour
     {
         if (buttonManager.IsLoad || (int)DisplayType != buttonManager.DisplayButton)
             return;
+        SoundManager.Instance.PlaySE(SoundManager.SEType.PushButton);
         buttonManager.IsLoad = true;
         ButtonImage.DOColor(ClickColor, SetTime);
         transform.DOScale(NormalSize*ClickSize, SetTime).OnComplete(() =>
@@ -79,9 +81,11 @@ public class ButtonController : MonoBehaviour
             ButtonImage.DOColor(NormalColor, SetTime);
             transform.DOScale(NormalSize, SetTime);
 
+            Debug.Log("Pushed");
+
             switch (PushType) 
             { 
-                case PUSHTYPE.GameStart: buttonManager.LoadScene(""); break;
+                case PUSHTYPE.GameStart: buttonManager.LoadScene("MainScene"); break;
                 case PUSHTYPE.Credit: buttonManager.SetCredit(); break;
                 case PUSHTYPE.ResetCredit: buttonManager.ResetCredit();  break;
                 case PUSHTYPE.Finish:
