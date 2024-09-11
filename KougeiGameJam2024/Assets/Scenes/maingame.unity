@@ -970,7 +970,6 @@ GameObject:
   m_Component:
   - component: {fileID: 583725785}
   - component: {fileID: 583725784}
-  - component: {fileID: 583725783}
   - component: {fileID: 583725782}
   m_Layer: 0
   m_Name: SpriteSwitcher (4)
@@ -997,18 +996,6 @@ MonoBehaviour:
   TargetSpriteRenderer: {fileID: 583725784}
   SwitchSpeed: 1
   EnableAnimation: 1
---- !u!114 &583725783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583725781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ce3b55d757717428d1e7fd63dd4c00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &583725784
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1269,7 +1256,6 @@ GameObject:
   m_Component:
   - component: {fileID: 686051504}
   - component: {fileID: 686051503}
-  - component: {fileID: 686051502}
   - component: {fileID: 686051501}
   m_Layer: 0
   m_Name: SpriteSwitcher (3)
@@ -1296,18 +1282,6 @@ MonoBehaviour:
   TargetSpriteRenderer: {fileID: 686051503}
   SwitchSpeed: 1
   EnableAnimation: 1
---- !u!114 &686051502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686051500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ce3b55d757717428d1e7fd63dd4c00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &686051503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2255,7 +2229,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1417294824}
   - component: {fileID: 1417294823}
-  - component: {fileID: 1417294822}
   - component: {fileID: 1417294825}
   m_Layer: 0
   m_Name: SpriteSwitcher (1)
@@ -2264,18 +2237,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1417294822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417294821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ce3b55d757717428d1e7fd63dd4c00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1417294823
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2371,7 +2332,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1511852838}
   - component: {fileID: 1511852837}
-  - component: {fileID: 1511852836}
   - component: {fileID: 1511852839}
   m_Layer: 0
   m_Name: SpriteSwitcher
@@ -2380,18 +2340,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1511852836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511852835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ce3b55d757717428d1e7fd63dd4c00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1511852837
 SpriteRenderer:
   m_ObjectHideFlags: 0
