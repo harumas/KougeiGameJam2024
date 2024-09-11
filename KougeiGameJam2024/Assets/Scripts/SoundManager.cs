@@ -107,7 +107,6 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySE(SEType seType)
     {
-        Debug.Log("SoundPlayed");
         Sound<SEType> sound = seSounds.Find(s => s.soundType.Equals(seType));
         
         if (sound != null)
