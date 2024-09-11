@@ -85,7 +85,7 @@ public class ButtonController : MonoBehaviour
 
             switch (PushType) 
             { 
-                case PUSHTYPE.GameStart: buttonManager.LoadScene("MainScene"); break;
+                case PUSHTYPE.GameStart: buttonManager.LoadScene("MainGameScene"); break;
                 case PUSHTYPE.Credit: buttonManager.SetCredit(); break;
                 case PUSHTYPE.ResetCredit: buttonManager.ResetCredit();  break;
                 case PUSHTYPE.Finish:

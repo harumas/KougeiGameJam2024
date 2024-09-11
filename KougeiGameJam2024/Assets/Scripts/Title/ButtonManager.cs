@@ -26,12 +26,12 @@ public class ButtonManager : MonoBehaviour
         else
             Destroy(this.gameObject);
 
-        SoundManager.Instance.PlayBGM(SoundManager.BGMType.Title);
     }
 
     private void Start()
     {
         CreditScale = Credit.transform.localScale;
+        SoundManager.Instance.PlayBGM(SoundManager.BGMType.Title);
     }
     private void Update()
     {
