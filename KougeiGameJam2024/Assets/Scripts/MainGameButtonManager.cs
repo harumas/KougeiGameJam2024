@@ -11,7 +11,6 @@ public class MainGameButtonManager : MonoBehaviour
 {
     [SerializeField] private ButtonController[] Buttons;
     private int Value = -1;
-    [SerializeField] private Image Fade;
     [NonSerialized] public static MainGameButtonManager Instance;
     [NonSerialized] public bool IsLoad = false;
    
@@ -96,10 +95,7 @@ public class MainGameButtonManager : MonoBehaviour
     }
     public void LoadScene(string SceneName)
     {
-        Fade.DOFade(1, 0.5f).OnComplete(() =>
-        {
-            SceneManager.LoadScene(SceneName);
-        });
+        SceneManager.LoadScene(SceneName);
     }
 
     public void SetTitleValue(ButtonController button)
