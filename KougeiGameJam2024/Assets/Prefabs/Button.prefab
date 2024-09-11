@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 706ff9a952eb2b241893fb24458b30a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -149,11 +149,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonImage: {fileID: 3826102483445219448}
   NormalColor: {r: 1, g: 1, b: 1, a: 1}
-  EnterColor: {r: 0.645283, g: 0.645283, b: 0.645283, a: 1}
-  ClickColor: {r: 0.5320754, g: 0.5320754, b: 0.5320754, a: 1}
-  SetTime: 0.3
-  EnterSize: 1.2
+  EnterColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  ClickColor: {r: 0.5999999, g: 0.5999999, b: 0.5999999, a: 1}
+  SetTime: 0.32
+  EnterSize: 1.29
   ClickSize: 0.8
+  URL: 
   PushType: 0
   DisplayType: 0
 --- !u!1 &8271395930417386791
@@ -223,15 +224,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a73391513acb79468e5041530c010cd, type: 2}
+  m_sharedMaterial: {fileID: -4960397412415104124, guid: 8a73391513acb79468e5041530c010cd,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
