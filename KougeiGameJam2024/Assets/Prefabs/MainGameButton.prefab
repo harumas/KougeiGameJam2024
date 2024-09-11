@@ -95,9 +95,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 3294693938322476848}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: EnterButton
+          m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -107,8 +107,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        - m_Target: {fileID: 4386167132907623942}
+          m_TargetAssemblyTypeName: MainGameButtonController, Assembly-CSharp
           m_MethodName: SetValue
           m_Mode: 1
           m_Arguments:
@@ -123,9 +123,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: ClickButton
+        - m_Target: {fileID: 4386167132907623942}
+          m_TargetAssemblyTypeName: MainGameButtonController, Assembly-CSharp
+          m_MethodName: ExitButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -155,7 +155,6 @@ MonoBehaviour:
   EnterSize: 1.29
   ClickSize: 0.8
   PushType: 0
-  DisplayType: 0
 --- !u!1 &8271395930417386791
 GameObject:
   m_ObjectHideFlags: 0
