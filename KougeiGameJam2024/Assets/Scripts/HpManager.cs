@@ -15,19 +15,26 @@ public class HpManager : MonoBehaviour
     [SerializeField] private PlayerMovement rPlayerMovement;
     [SerializeField] private Rope rope;
 
-    [Header("プレイヤーのHp")] [SerializeField] private float lPlayerHp;
-    [SerializeField] private float rPlayerHp;
-
     private bool isPlaying;
 
     private void Start()
     {
-        lPlayerHp = maxHp;
-        rPlayerHp = maxHp;
+        if (GameStateData.Instance.IsFirstRound)
+        {
+            GameStateData.Instance.Initialize(maxHp);
+        }
 
-        lPlayerMovement.OnReleased += isRight => { AddHp(!isRight, rope.Length * -damageMultiplier); };
+        lPlayerMovement.OnReleased += isRight =>
+        {
+            AddHp(!isRight, rope.Length * -damageMultiplier);
+        };
+        rPlayerMovement.OnReleased += isRight =>
+        {
+            AddHp(!isRight, rope.Length * -damageMultiplier);
+        };
 
-        rPlayerMovement.OnReleased += isRight => { AddHp(!isRight, rope.Length * -damageMultiplier); };
+        SetHp(true, GameStateData.Instance.RPlayerHp);
+        SetHp(false, GameStateData.Instance.LPlayerHp);
     }
 
     private IEnumerator IncreaseHpCoroutine()
@@ -41,19 +48,31 @@ public class HpManager : MonoBehaviour
         }
     }
 
-    public void AddHp(bool isRight, float delta)
+    private void AddHp(bool isRight, float delta)
     {
         if (isRight)
         {
-            rPlayerHp += delta;
-            rPlayerHp = Mathf.Clamp(rPlayerHp, 0, maxHp);
-            rPlayerSlider.value = rPlayerHp / maxHp;
+            GameStateData.Instance.RPlayerHp += delta;
+            rPlayerSlider.value = GameStateData.Instance.RPlayerHp / maxHp;
         }
         else
         {
-            lPlayerHp += delta;
-            lPlayerHp = Mathf.Clamp(lPlayerHp, 0, maxHp);
-            lPlayerSlider.value = lPlayerHp / maxHp;
+            GameStateData.Instance.LPlayerHp += delta;
+            lPlayerSlider.value = GameStateData.Instance.LPlayerHp / maxHp;
+        }
+    }
+
+    private void SetHp(bool isRight, float value)
+    {
+        if (isRight)
+        {
+            GameStateData.Instance.RPlayerHp = value;
+            rPlayerSlider.value = GameStateData.Instance.RPlayerHp / maxHp;
+        }
+        else
+        {
+            GameStateData.Instance.LPlayerHp = value;
+            lPlayerSlider.value = GameStateData.Instance.LPlayerHp / maxHp;
         }
     }
 

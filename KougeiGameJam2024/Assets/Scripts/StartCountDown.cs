@@ -8,8 +8,13 @@ public class StartCountDown : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countDownMesh;
     [SerializeField] private PlayerMovement lPlayerMovement;
     [SerializeField] private PlayerMovement rPlayerMovement;
+    [SerializeField] private TextMeshProUGUI lPlayerHoldText;
+    [SerializeField] private TextMeshProUGUI rPlayerHoldText;
     [SerializeField] private bool skipCountDown;
     private bool isStarting = false;
+
+    public event Action CountDownStart;
+    public event Action CountDownEnd;
 
     private void Update()
     {
@@ -18,8 +23,12 @@ public class StartCountDown : MonoBehaviour
             return;
         }
 
+        UpdateKeyState();
+
         if (IsBothPushing())
         {
+            isStarting = true;
+
             if (skipCountDown)
             {
                 lPlayerMovement.Begin();
@@ -27,21 +36,21 @@ public class StartCountDown : MonoBehaviour
                 return;
             }
 
-            isStarting = true;
             StartCoroutine(nameof(StartSequence));
         }
     }
 
     private IEnumerator StartSequence()
     {
+        CountDownStart?.Invoke();
+
         countDownMesh.text = "3";
         countDownMesh.enabled = true;
         yield return new WaitForSeconds(1f);
 
         if (!IsBothPushing())
         {
-            countDownMesh.enabled = false;
-            isStarting = false;
+            CancelCountDown();
             yield break;
         }
 
@@ -50,8 +59,7 @@ public class StartCountDown : MonoBehaviour
 
         if (!IsBothPushing())
         {
-            countDownMesh.enabled = false;
-            isStarting = false;
+            CancelCountDown();
             yield break;
         }
 
@@ -60,8 +68,7 @@ public class StartCountDown : MonoBehaviour
 
         if (!IsBothPushing())
         {
-            countDownMesh.enabled = false;
-            isStarting = false;
+            CancelCountDown();
             yield break;
         }
 
@@ -71,6 +78,19 @@ public class StartCountDown : MonoBehaviour
 
         lPlayerMovement.Begin();
         rPlayerMovement.Begin();
+    }
+
+    private void CancelCountDown()
+    {
+        countDownMesh.enabled = false;
+        isStarting = false;
+        CountDownEnd?.Invoke();
+    }
+
+    private void UpdateKeyState()
+    {
+        lPlayerHoldText.enabled = !Input.GetKey(KeyCode.D);
+        rPlayerHoldText.enabled = !Input.GetKey(KeyCode.LeftArrow);
     }
 
     private bool IsBothPushing()
