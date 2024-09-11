@@ -9,8 +9,8 @@ public class HpManager : MonoBehaviour
     [SerializeField] private float increaseHpValue;
     [SerializeField] private float increaseInterval;
     [SerializeField] private float damageMultiplier;
-    [SerializeField] private Slider lPlayerSlider;
-    [SerializeField] private Slider rPlayerSlider;
+    [SerializeField] private Image lPlayerSlider;
+    [SerializeField] private Image rPlayerSlider;
     [SerializeField] private PlayerMovement lPlayerMovement;
     [SerializeField] private PlayerMovement rPlayerMovement;
     [SerializeField] private Rope rope;
@@ -53,12 +53,12 @@ public class HpManager : MonoBehaviour
         if (isRight)
         {
             GameStateData.Instance.RPlayerHp += delta;
-            rPlayerSlider.value = GameStateData.Instance.RPlayerHp / maxHp;
+            rPlayerSlider.fillAmount = GameStateData.Instance.RPlayerHp / maxHp;
         }
         else
         {
             GameStateData.Instance.LPlayerHp += delta;
-            lPlayerSlider.value = GameStateData.Instance.LPlayerHp / maxHp;
+            lPlayerSlider.fillAmount = GameStateData.Instance.LPlayerHp / maxHp;
         }
     }
 
@@ -67,12 +67,12 @@ public class HpManager : MonoBehaviour
         if (isRight)
         {
             GameStateData.Instance.RPlayerHp = value;
-            rPlayerSlider.value = GameStateData.Instance.RPlayerHp / maxHp;
+            rPlayerSlider.fillAmount = GameStateData.Instance.RPlayerHp / maxHp;
         }
         else
         {
             GameStateData.Instance.LPlayerHp = value;
-            lPlayerSlider.value = GameStateData.Instance.LPlayerHp / maxHp;
+            lPlayerSlider.fillAmount = GameStateData.Instance.LPlayerHp / maxHp;
         }
     }
 
