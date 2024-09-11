@@ -2109,7 +2109,7 @@ MonoBehaviour:
     volume: 1
     source: {fileID: 0}
   - soundType: 1
-    clip: {fileID: 8300000, guid: 1c42aea4ff41e3d4788574260f519d56, type: 3}
+    clip: {fileID: 8300000, guid: e315f4e735d8b494e9bcae8a16c6d292, type: 3}
     volume: 1
     source: {fileID: 0}
   - soundType: 2
