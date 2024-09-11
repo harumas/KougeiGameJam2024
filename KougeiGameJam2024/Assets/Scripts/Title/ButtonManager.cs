@@ -25,6 +25,8 @@ public class ButtonManager : MonoBehaviour
 
         else
             Destroy(this.gameObject);
+
+        SoundManager.Instance.PlayBGM(SoundManager.BGMType.Title);
     }
 
     private void Start()
@@ -37,7 +39,8 @@ public class ButtonManager : MonoBehaviour
         {
            switch(DisplayButton) 
             {
-                case 0:UpButton(TitleButtons);break;
+                case 0:UpButton(TitleButtons);
+                break;
                 case 1:UpButton(CreditButtons); break;
             }
         }
@@ -104,13 +107,15 @@ public class ButtonManager : MonoBehaviour
         if (Value < 0 && Value >= buttons.Length)
             return;
 
+        Debug.Log("Pushed");
+        SoundManager.Instance.PlaySE(SoundManager.SEType.Win);
         buttons[Value].ClickButton();
     }
     public void LoadScene(string SceneName)
     {
         Fade.DOFade(1, 0.5f).OnComplete(() =>
         {
-            // SceneManager.LoadScene(SceneName);
+            SceneManager.LoadScene(SceneName);
         });
     }
 
