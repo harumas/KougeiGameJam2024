@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -13,6 +14,8 @@ public class RoundSequence : MonoBehaviour
     [SerializeField] private StartCountDown startCountDown;
     [SerializeField] private GameObject nextRoundButton;
     [SerializeField] private GameObject backToTitleButton;
+    [SerializeField] private GameObject lWinImage;
+    [SerializeField] private GameObject rWinImage;
     [SerializeField] private Image fadeInImage;
     [SerializeField] private float fadeInDelay = 1f;
     [SerializeField] private float gotoNextRoundDelay = 2f;
@@ -33,9 +36,9 @@ public class RoundSequence : MonoBehaviour
                 string winnerName = GameStateData.Instance.LPlayerHp == 0 ? "中野" : "厚木";
                 roundText.text = $"{winnerName}の勝利！";
                 buttonManager.IsLoad = false;
-                roundText.gameObject.SetActive(true);
-                nextRoundButton.gameObject.SetActive(true);
-                backToTitleButton.gameObject.SetActive(true);
+                
+
+                StartCoroutine(WinImage(winnerName));
 
                 GameStateData.Instance.Reset();
             }
@@ -46,6 +49,20 @@ public class RoundSequence : MonoBehaviour
                 FadeIn().OnComplete(GoToNextRound).SetDelay(fadeInDelay);
             }
         };
+
+        IEnumerator WinImage(string name)
+        {
+            yield return new WaitForSeconds(1.5f);
+            if(name == "中野"){
+                rWinImage.SetActive(true);
+                }else{
+                lWinImage.SetActive(true);
+                }
+
+            roundText.gameObject.SetActive(true);
+            nextRoundButton.gameObject.SetActive(true);
+            backToTitleButton.gameObject.SetActive(true);
+        }
 
         startCountDown.CountDownStart += () =>
         {
