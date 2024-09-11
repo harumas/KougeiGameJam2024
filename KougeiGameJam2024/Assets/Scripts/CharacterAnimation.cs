@@ -74,7 +74,7 @@ public class CharacterAnimation : MonoBehaviour
             rPlayerImage.sprite = rDefeatCharacterSprite;
             Vector3 AdditionalRotation = new Vector3(0,180,0);
             Destroy(Instantiate(PattinEffect,rRendererObj.transform.position,Quaternion.Euler(AdditionalRotation)),1);
-            rRendererObj.transform.DOLocalRotate(new Vector3(0, 0, 720f), 1f,  
+            rRendererObj.transform.DOLocalRotate(new Vector3(0, 0, -720f), 1f,  
             RotateMode.FastBeyond360);
         }else{
             lPlayerImage.sprite = lDefeatCharacterSprite;
