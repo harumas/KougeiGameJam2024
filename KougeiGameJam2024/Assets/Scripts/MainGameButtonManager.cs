@@ -9,10 +9,10 @@ using Unity.VisualScripting;
 
 public class MainGameButtonManager : MonoBehaviour
 {
-    [SerializeField] private ButtonController[] Buttons;
+    [SerializeField] private MainGameButtonController[] Buttons;
     private int Value = -1;
     [NonSerialized] public static MainGameButtonManager Instance;
-    [NonSerialized] public bool IsLoad = false;
+    [NonSerialized] public bool IsLoad = true;
    
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class MainGameButtonManager : MonoBehaviour
         }
     }
 
-    private void UpButton(ButtonController[]buttons)
+    private void UpButton(MainGameButtonController[]buttons)
     {
         if (Value == -1)
             Value = 0;
@@ -65,7 +65,7 @@ public class MainGameButtonManager : MonoBehaviour
         buttons[Value].EnterButton();
     }
 
-    private void DownButton(ButtonController[] buttons)
+    private void DownButton(MainGameButtonController[] buttons)
     {
         if (Value == -1)
             Value = 0;
@@ -84,7 +84,7 @@ public class MainGameButtonManager : MonoBehaviour
         buttons[Value].EnterButton();
     }
 
-    private void ClickButton(ButtonController[] buttons)
+    private void ClickButton(MainGameButtonController[] buttons)
     {
         if (Value < 0 && Value >= buttons.Length)
             return;

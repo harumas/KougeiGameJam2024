@@ -24,13 +24,7 @@ public class MainGameButtonController : MonoBehaviour
 
     [SerializeField] private PUSHTYPE PushType; 
 
-    private enum DISPLAYTYPE
-    {
-        Title,
-        Credit
-    }
-
-    [SerializeField] private DISPLAYTYPE DisplayType;
+  
 
     private void Start()
     {
