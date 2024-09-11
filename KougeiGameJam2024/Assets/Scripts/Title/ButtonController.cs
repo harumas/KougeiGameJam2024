@@ -14,6 +14,7 @@ public class ButtonController : MonoBehaviour
     private Vector3 NormalSize;
     [SerializeField] private float EnterSize;
     [SerializeField] private float ClickSize;
+    [SerializeField] private string URL;
     private ButtonManager buttonManager => ButtonManager.Instance;
 
     private enum PUSHTYPE
@@ -94,7 +95,7 @@ public class ButtonController : MonoBehaviour
                     }
                 case PUSHTYPE.URL:
                     {
-                        Application.OpenURL("https://getabakoclub.com/");
+                        Application.OpenURL(URL);
                         buttonManager.IsLoad = false;
                         break;
                     }
