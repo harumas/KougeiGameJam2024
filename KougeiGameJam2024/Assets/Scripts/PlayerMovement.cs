@@ -20,9 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("シールド関係")]
     [Tooltip("「経過時間＊ヒール値」で計算されます")]
-    [Range(0, 2f)]
-    [SerializeField]
-    private float ShieldDurationHeal;
 
     [SerializeField] private Shield shield;
     [Range(0,2f)]
