@@ -98,7 +98,7 @@ public class MainGameButtonManager : MonoBehaviour
         SceneManager.LoadScene(SceneName);
     }
 
-    public void SetTitleValue(ButtonController button)
+    public void SetValue(MainGameButtonController button)
     {
         if(Value>=0&&Value<=Buttons.Length)
             Buttons[Value].ExitButton();

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.BoolParameter;
 
 public class MainGameButtonController : MonoBehaviour
 {
@@ -71,7 +72,14 @@ public class MainGameButtonController : MonoBehaviour
             }
 
         });
-       
-       
+
+      
+    }
+    public void SetValue()
+    {
+        if (buttonManager.IsLoad)
+            return;
+
+        buttonManager.SetValue(this);
     }
 }
