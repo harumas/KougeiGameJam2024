@@ -9,10 +9,9 @@ public class HpManager : MonoBehaviour
     [SerializeField] private float increaseHpValue;
     [SerializeField] private float increaseInterval;
     [SerializeField] private float damageMultiplier;
+    [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private Image lPlayerSlider;
     [SerializeField] private Image rPlayerSlider;
-    [SerializeField] private PlayerMovement lPlayerMovement;
-    [SerializeField] private PlayerMovement rPlayerMovement;
     [SerializeField] private Rope rope;
 
     private bool isPlaying;
@@ -24,15 +23,11 @@ public class HpManager : MonoBehaviour
             GameStateData.Instance.Initialize(maxHp);
         }
 
-        lPlayerMovement.OnReleased += isRight =>
+        scoreManager.OnScored += (isRight, score) =>
         {
-            AddHp(!isRight, rope.Length * -damageMultiplier);
+            AddHp(isRight, rope.Length * -damageMultiplier);
         };
-        rPlayerMovement.OnReleased += isRight =>
-        {
-            AddHp(!isRight, rope.Length * -damageMultiplier);
-        };
-
+        
         SetHp(true, GameStateData.Instance.RPlayerHp);
         SetHp(false, GameStateData.Instance.LPlayerHp);
     }

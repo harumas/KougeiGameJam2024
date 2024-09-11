@@ -9,6 +9,7 @@ public class CharacterAnimation : MonoBehaviour
 {
     [SerializeField]private PlayerMovement lPlayerMovement;
     [SerializeField]private PlayerMovement rPlayerMovement;
+    [SerializeField]private ScoreManager scoreManager;
     [Header("キャラクターのImageコンポーネントが入ったオブジェクト")]
     [SerializeField]private GameObject lRendererObj;
     [SerializeField]private GameObject rRendererObj;
@@ -34,12 +35,13 @@ public class CharacterAnimation : MonoBehaviour
     {
         isAnimationEnabled = true;
 
-
         lPlayerImage = lRendererObj.GetComponent<SpriteRenderer>();
         rPlayerImage = rRendererObj.GetComponent<SpriteRenderer>();
 
-        lPlayerMovement.OnReleased += isRight => { OnDamaged(!isRight); };
-        rPlayerMovement.OnReleased += isRight => { OnDamaged(!isRight); };
+        scoreManager.OnScored += (isRight, score) =>
+        {
+            OnDamaged(isRight);
+        };
     }
 
     void Update()

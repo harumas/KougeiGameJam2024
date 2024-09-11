@@ -9,6 +9,7 @@ public class ZoomCamera : MonoBehaviour
     [SerializeField] private float offsetZ;
     [SerializeField] private float paddingOffset;
     [SerializeField] private float cameraDamping;
+    [SerializeField] private CinemachineBrain cameraBrain;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     [SerializeField] private CinemachineVirtualCamera lPlayerCamera;
     [SerializeField] private CinemachineVirtualCamera rPlayerCamera;
@@ -21,7 +22,7 @@ public class ZoomCamera : MonoBehaviour
         rPlayerMovement.OnReleased += SwitchCameraPriority;
     }
 
-    private void SwitchCameraPriority(bool isRight)
+    public void SwitchCameraPriority(bool isRight)
     {
         mainCamera.Priority = 0;
 
@@ -35,6 +36,11 @@ public class ZoomCamera : MonoBehaviour
             lPlayerCamera.Priority = 1;
             rPlayerCamera.Priority = 0;
         }
+    }
+
+    public void SetEaseDuration(float easeDuration)
+    {
+        cameraBrain.m_DefaultBlend.m_Time = easeDuration;
     }
 
     private void LateUpdate()
