@@ -33,6 +33,7 @@ public class RoundSequence : MonoBehaviour
         {
             if (GameStateData.Instance.IsGameEnd)
             {
+                SoundManager.Instance.PlaySE(SoundManager.SEType.Win);
                 string winnerName = GameStateData.Instance.LPlayerHp == 0 ? "中野" : "厚木";
                 roundText.text = $"{winnerName}の勝利！";
                 roundText.gameObject.SetActive(true);
