@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float ShieldCoolDown;
     private bool IsShieldBroken;
     private float InitialShieldDuration;
-    public bool IsUsingShield;
+    public bool IsUsingShield,isWalking_R,isWalking_L;
     
 
     public event Action<bool> OnReleased;
@@ -137,6 +137,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += MoveSpeed * ropeScript.GetRopeDecayRate() * Time.deltaTime;
             transform.position = CurrentPosition;
+            isWalking_R=true;
+        }else{
+            isWalking_R=false;
         }
 
         if(!IsRightMove && Input.GetKey(KeyCode.A) && !IsShieldBroken)
@@ -144,6 +147,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += -MoveSpeed * ropeScript.GetRopeDecayRate() * Time.deltaTime;
             transform.position = CurrentPosition;
+            isWalking_L=true;
+        }else{
+            isWalking_L=false;
         }
     }
 }
