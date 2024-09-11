@@ -125,7 +125,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 4386167132907623942}
           m_TargetAssemblyTypeName: MainGameButtonController, Assembly-CSharp
-          m_MethodName: ExitButton
+          m_MethodName: ClickButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

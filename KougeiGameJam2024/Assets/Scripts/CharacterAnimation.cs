@@ -48,7 +48,6 @@ public class CharacterAnimation : MonoBehaviour
     {
         if(lCoroutine == null && lPlayerMovement.isWalking_L)
         {
-            Debug.Log("EGSE");
             lCoroutine = StartCoroutine(AnimationCoroutine(lPlayerImage,false));
         }else if(lCoroutine != null && !lPlayerMovement.isWalking_L)
         {
@@ -58,7 +57,6 @@ public class CharacterAnimation : MonoBehaviour
 
         if(rCoroutine == null && rPlayerMovement.isWalking_R)
         {
-            Debug.Log("RRRR");
             rCoroutine = StartCoroutine(AnimationCoroutine(rPlayerImage,true));
         }else if(rCoroutine != null && !rPlayerMovement.isWalking_R)
         {
