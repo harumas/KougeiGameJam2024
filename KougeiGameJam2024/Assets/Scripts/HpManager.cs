@@ -12,9 +12,11 @@ public class HpManager : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private Image lPlayerSlider;
     [SerializeField] private Image rPlayerSlider;
-    [SerializeField] private Rope rope;
+    [SerializeField] private Transform lPlayerTransform;
+    [SerializeField] private Transform rPlayerTransform;
 
     private bool isPlaying;
+    public event Action Damaged;
 
     private void Start()
     {
@@ -25,7 +27,9 @@ public class HpManager : MonoBehaviour
 
         scoreManager.OnScored += (isRight, score) =>
         {
-            AddHp(isRight, rope.Length * -damageMultiplier);
+            float distance = Vector3.Distance(lPlayerTransform.position, rPlayerTransform.position);
+            AddHp(isRight, distance * -damageMultiplier);
+            Damaged?.Invoke();
         };
         
         SetHp(true, GameStateData.Instance.RPlayerHp);
@@ -81,4 +85,5 @@ public class HpManager : MonoBehaviour
     {
         isPlaying = false;
     }
+
 }

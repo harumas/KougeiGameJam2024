@@ -19,9 +19,9 @@ public class Shield : MonoBehaviour
     {
         if (enableNotice)
         {
-            return; 
+            return;
         }
-        
+
         enableNotice = true;
         barrierSprite.enabled = true;
     }
@@ -30,9 +30,9 @@ public class Shield : MonoBehaviour
     {
         if (!enableNotice)
         {
-            return; 
+            return;
         }
-        
+
         enableNotice = false;
         barrierSprite.enabled = false;
     }
@@ -55,5 +55,6 @@ public class Shield : MonoBehaviour
         stopNotice = true;
         barrierSprite.enabled = true;
         barrierParticle.Play();
+        SoundManager.Instance.PlaySE(SoundManager.SEType.Barrier);
     }
 }

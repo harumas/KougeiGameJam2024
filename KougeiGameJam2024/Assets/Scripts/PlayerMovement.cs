@@ -165,13 +165,13 @@ public class PlayerMovement : MonoBehaviour
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += MoveSpeed * ropeScript.GetRopeDecayRate() * Time.deltaTime;
             transform.position = CurrentPosition;
+            isWalking_R=true;
 
             if(rSEcoroutine == null)
             {
                 
                 rSEcoroutine = StartCoroutine(PlayeRubberPull());
             }
-            isWalking_R=true;
         }else{
 
             if(rSEcoroutine != null)
@@ -188,7 +188,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 CurrentPosition = transform.position;
             CurrentPosition.x += -MoveSpeed * ropeScript.GetRopeDecayRate() * Time.deltaTime;
-            isWalking_R=true;
             transform.position = CurrentPosition;
             isWalking_L=true;
 
@@ -205,7 +204,6 @@ public class PlayerMovement : MonoBehaviour
                 StopCoroutine(PlayeRubberPull());
                 lSEcoroutine = null;
             }
-            isWalking_R=false;
             isWalking_L=false;
         }
     }

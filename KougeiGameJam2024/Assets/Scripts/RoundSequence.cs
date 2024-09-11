@@ -11,6 +11,7 @@ public class RoundSequence : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI roundText;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private HpManager hpManager;
     [SerializeField] private StartCountDown startCountDown;
     [SerializeField] private GameObject nextRoundButton;
     [SerializeField] private GameObject backToTitleButton;
@@ -28,7 +29,7 @@ public class RoundSequence : MonoBehaviour
         roundText.text = $"Round {GameStateData.Instance.Round + 1}";
         FadeOut();
 
-        scoreManager.OnScored += (isRight, score) =>
+        hpManager.Damaged += () =>
         {
             if (GameStateData.Instance.IsGameEnd)
             {
@@ -36,7 +37,6 @@ public class RoundSequence : MonoBehaviour
                 string winnerName = GameStateData.Instance.LPlayerHp == 0 ? "中野" : "厚木";
                 roundText.text = $"{winnerName}の勝利！";
                 buttonManager.IsLoad = false;
-                
 
                 StartCoroutine(WinImage(winnerName));
 

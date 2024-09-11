@@ -2137,8 +2137,8 @@ MonoBehaviour:
     volume: 1
     source: {fileID: 0}
   masterVolume: 0.065
-  musicVolume: 0.256
-  seVolume: 0.454
+  musicVolume: 0.213
+  seVolume: 0.918
 --- !u!4 &1373248545
 Transform:
   m_ObjectHideFlags: 0
